@@ -3601,24 +3601,45 @@ int tier = 0;
     if (pindexPrev->nHeight+1 >= TIERED_MASTERNODES_START_BLOCK) {
         if (tier != 0) {
 			if( pindexPrev->nHeight + 1 < TIERED_MASTERNODES_START_BLOCK_1)
+			{
 				masternodePayment = masternodeTierRewards[tier]*COIN + (int64_t) (nFees * ((double)masternodeTierRewards[tier]/(POS_REWARD_TIERED_MN+masternodeTierRewards[tier])));
-			else
+			}
+			else if(pindexPrev->nHeight + 1 < TIERED_MASTERNODES_START_BLOCK_2)
+			{
 				masternodePayment = masternodeTierRewards1[tier]*COIN + (int64_t) (nFees * ((double)masternodeTierRewards1[tier]/(POS_REWARD_TIERED_MN+masternodeTierRewards1[tier])));
+			}
+			else
+			{
+				masternodePayment = masternodeTierRewards2[tier]*COIN + (int64_t) (nFees * ((double)masternodeTierRewards2[tier]/(POS_REWARD_TIERED_MN_2+masternodeTierRewards2[tier])));
+			}
+				
         }
         else {
             masternodePayment = 0;
         }
-
-        nCredit += POS_REWARD_TIERED_MN*COIN + nFees;
+		
+		if(pindexPrev->nHeight + 1 < TIERED_MASTERNODES_START_BLOCK_2)
+		{
+			nCredit += POS_REWARD_TIERED_MN*COIN + nFees;
+		}
+		else
+		{
+			nCredit += POS_REWARD_TIERED_MN_2*COIN + nFees;
+		}
+			
         LogPrintf("nCredit pos: %i\n", nCredit);
         if (tier != 0) {
 			if( pindexPrev->nHeight + 1 < TIERED_MASTERNODES_START_BLOCK_1)
 			{
 				nCredit += masternodeTierRewards[tier]*COIN;
 			}
-			else
+			else if(pindexPrev->nHeight + 1 < TIERED_MASTERNODES_START_BLOCK_2)
 			{
 				nCredit += masternodeTierRewards1[tier]*COIN;
+			}
+			else
+			{
+				nCredit += masternodeTierRewards2[tier]*COIN;
 			}
 			LogPrintf("nCredit mn: %i\n", nCredit);
         }

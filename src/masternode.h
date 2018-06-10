@@ -36,6 +36,7 @@ class uint256;
 
 #define TIERED_MASTERNODES_START_BLOCK         95000// tiered mns 1st block
 #define TIERED_MASTERNODES_START_BLOCK_1        144144// tiered mns updated 1st block
+#define TIERED_MASTERNODES_START_BLOCK_2        162000// tiered mns updated 2nd block
 using namespace std;
 using namespace boost::assign;
 
@@ -49,10 +50,12 @@ bool GetBlockHash(uint256& hash, int nBlockHeight);
 typedef std::map<int, int> intMap;
 // Masternode tiers
 static std::map<int, int> masternodeTiers = map_list_of (1, 1500) (2, 3000) (3, 5000) (4, 7500) (5, 10000) (6, 15000) (7, 20000) (8, 50000); 
-static std::map<int, int> masternodeTiers1 = map_list_of (1, 1500) (2, 5000) (3, 10000) (4, 20000) (5, 50000); 
+static std::map<int, int> masternodeTiers1 = map_list_of (1, 1500) (2, 5000) (3, 10000) (4, 20000) (5, 50000);
+static std::map<int, int> masternodeTiers2 = map_list_of (1, 5500) (2, 12000) (3, 30000) (4, 70000); 
 // Masternode tier rewards
 static std::map<int, int> masternodeTierRewards = map_list_of (1, 12) (2, 28) (3, 54) (4, 78) (5, 108) (6, 174) (7, 238) (8, 700); 
 static std::map<int, int> masternodeTierRewards1 = map_list_of (1, 7) (2, 27) (3, 57) (4, 137) (5, 377); 
+static std::map<int, int> masternodeTierRewards2 = map_list_of (1, 15) (2, 40) (3, 110) (4, 250); 
 //
 // The Masternode Class. For managing the darksend process. It contains the input of the 500 OLMP, signature to prove
 // it's the one who own that ip address and code for calculating the payment election.

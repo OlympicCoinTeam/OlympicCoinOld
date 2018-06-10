@@ -866,9 +866,39 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 					}
 				}
 			}
-			else
+			else if( pindexBest->nHeight < TIERED_MASTERNODES_START_BLOCK_2 )
 			{
 				BOOST_FOREACH(PAIRTYPE(const int, int) & mntier, masternodeTiers1)
+				{
+					if (!fAcceptable && (mntier.second*COIN) == checkValue) {
+						CTransaction tx = CTransaction();
+						CTxOut vout = CTxOut((GetMNCollateral(pindexBest->nHeight, mntier.first)) * COIN,
+											 darkSendPool.collateralPubKey);
+						tx.vin.push_back(vin);
+						tx.vout.push_back(vout);
+						{
+							TRY_LOCK(cs_main, lockMain);
+							if (!lockMain) return;
+							fAcceptable = AcceptableInputs(mempool, tx, false, NULL);
+							if (fAcceptable) { // Update mn tier on our records
+								if (pmn != NULL) {
+									pmn->UpdateTier(mntier.first);
+								}
+								else {
+									newMNTier = mntier.first;
+								}
+							}
+							else {
+								tx.vin.pop_back();
+								tx.vout.pop_back();
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				BOOST_FOREACH(PAIRTYPE(const int, int) & mntier, masternodeTiers2)
 				{
 					if (!fAcceptable && (mntier.second*COIN) == checkValue) {
 						CTransaction tx = CTransaction();
@@ -1151,9 +1181,39 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 					}
 				}
 			}
-			else
+			else if(pindexBest->nHeight < TIERED_MASTERNODES_START_BLOCK_2)
 			{
 				BOOST_FOREACH(PAIRTYPE(const int, int) & mntier, masternodeTiers1)
+				{
+					if (!fAcceptable && (mntier.second*COIN) == checkValue) {
+						CTransaction tx = CTransaction();
+						CTxOut vout = CTxOut((GetMNCollateral(pindexBest->nHeight, mntier.first)) * COIN,
+											 darkSendPool.collateralPubKey);
+						tx.vin.push_back(vin);
+						tx.vout.push_back(vout);
+						{
+							TRY_LOCK(cs_main, lockMain);
+							if (!lockMain) return;
+							fAcceptable = AcceptableInputs(mempool, tx, false, NULL);
+							if (fAcceptable) { // Update mn tier on our records
+								if (pmn != NULL) {
+									pmn->UpdateTier(mntier.first);
+								}
+								else {
+									newMNTier = mntier.first;
+								}
+							}
+							else {
+								tx.vin.pop_back();
+								tx.vout.pop_back();
+							}
+						}
+					}
+				}
+			}
+			else
+			{
+				BOOST_FOREACH(PAIRTYPE(const int, int) & mntier, masternodeTiers2)
 				{
 					if (!fAcceptable && (mntier.second*COIN) == checkValue) {
 						CTransaction tx = CTransaction();

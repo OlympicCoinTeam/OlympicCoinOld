@@ -30,7 +30,7 @@ static const int64_t FORK_TIME = 1527341165;  //2018/5/26 13:26:05
 
 #define INSTANTX_SIGNATURES_REQUIRED           10
 #define INSTANTX_SIGNATURES_TOTAL              15
-
+#define FORK1_BlOCK 162000
 
 class CBlock;
 class CBlockIndex;

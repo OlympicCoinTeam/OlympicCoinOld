@@ -58,6 +58,7 @@ enum AvailableCoinsType
 };
 
 #define POS_REWARD_TIERED_MN 5 // 5
+#define POS_REWARD_TIERED_MN_2 8 // 8
 /** A key pool entry */
 class CKeyPool
 {
