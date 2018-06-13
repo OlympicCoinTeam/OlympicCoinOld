@@ -119,9 +119,10 @@ CMasternode::CMasternode(const CMasternode& other)
     nScanningErrorCount = other.nScanningErrorCount;
     nLastScanningErrorBlockHeight = other.nLastScanningErrorBlockHeight;
     nLastPaid = other.nLastPaid;
+    nLastPaid = GetAdjustedTime();
     isPortOpen = other.isPortOpen;
     isOldNode = other.isOldNode;
-    tier = other.tier;
+	 tier = other.tier;
     score = other.score;
 }
 
@@ -151,7 +152,7 @@ CMasternode::CMasternode(CService newAddr, CTxIn newVin, CPubKey newPubkey, std:
     nLastScanningErrorBlockHeight = 0;
     isPortOpen = true;
     isOldNode = true;
-    tier = 1;
+	tier = 1;
     score = 0;
     // On new additions set last paid to now
     nLastPaid = GetAdjustedTime();
