@@ -1,11 +1,10 @@
 ## Tiered amounts
 
 Choose amount of coins for masternode:
-- 1500 OLMP (Reward: 7 OLMP)
-- 5000 OLMP (Reward: 27 OLMP)
-- 10000 OLMP (Reward: 57 OLMP)
-- 20000 OLMP (Reward: 137 OLMP)
-- 50000 OLMP (Reward: 377 OLMP)
+- 5500 OLMP (Reward: 18 OLMP)
+- 12000 OLMP (Reward: 40 OLMP)
+- 30000 OLMP (Reward: 110 OLMP)
+- 70000 OLMP (Reward: 250 OLMP)
 
 ## 1. Generate private key in the LOCAL DESKTOP wallet
 
@@ -93,13 +92,13 @@ Choose amount of coins for masternode:
 - Press "Copy Address" and save it for Address in step 9 and 11
 - You can also repeat step 8 to create another address for rewards
 
-## 9. Send exactly choosed amount (e.g. 5000 OLMP) to LOCAL DESKTOP wallet
+## 9. Send exactly choosed amount (e.g. 5500 OLMP) to LOCAL DESKTOP wallet
 
 - Press "Send" tab
 - In "Pay To", enter in the address from step 8
-- In "Amount", enter 5000 exactly. No more. No less.
+- In "Amount", enter 5500 exactly. No more. No less.
 - Press "Send" and agree to the fee
-- You'll need a bit more than 5000 coins in your account to pay the fee
+- You'll need a bit more than 5500 coins in your account to pay the fee
 
 ## 10. Get the transaction information in LOCAL DESKTOP wallet
 
@@ -125,8 +124,8 @@ Choose amount of coins for masternode:
 	+ PrivKey (the genkey from step 1)
 	+ TxHash (the alphanumber from step 10)
 	+ Output Index (the 0 or 1 from step 10)
-	+ Reward Address (the address from step 8)
-	+ Reward % (100)
+	+ Reward Address (the address from step 8 or leave blank)
+	+ Reward % (100 or leave blank)
 - Press OK
 - Press "Update"
 - Press the line that shows the masternode information
